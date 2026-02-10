@@ -19,6 +19,8 @@
       border-radius: 12px;
       display: inline-block;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 2;
+      position: relative;
     }
 
     input {
@@ -66,11 +68,18 @@
         opacity: 0;
       }
     }
+
+    #sorryText {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #ff4d88;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Câu hỏi ban đầu -->
+  <!-- Bước 1 -->
   <div class="box" id="step1">
     <h2>Bạn ni đang làm gì đó 🫣</h2>
     <input type="text" placeholder="Trả lời nè~">
@@ -78,11 +87,19 @@
     <button onclick="nextStep()">Trả lời</button>
   </div>
 
-  <!-- Xin đừng giận -->
+  <!-- Bước 2 -->
   <div class="box hidden" id="step2">
     <h2>Đừng giận nữa mà 🥺</h2>
     <button id="ok" onclick="agree()">okieee</button>
     <button id="khum" onmouseover="moveKhum()">khum</button>
+  </div>
+
+  <!-- Bước 3 -->
+  <div class="box hidden" id="step3">
+    <div id="sorryText">
+      Vậy rep đi mà 🥹<br>
+      Bạn xin lỗi nhiềuuu 💗
+    </div>
   </div>
 
   <script>
@@ -90,7 +107,6 @@
       document.getElementById("step1").classList.add("hidden");
       document.getElementById("step2").classList.remove("hidden");
 
-      // đặt vị trí ban đầu cho nút khum
       const khum = document.getElementById("khum");
       khum.style.left = "50%";
       khum.style.top = "60%";
@@ -107,6 +123,7 @@
     function agree() {
       document.body.style.backgroundColor = "#ffc0cb";
       document.getElementById("step2").classList.add("hidden");
+      document.getElementById("step3").classList.remove("hidden");
       createFlowers();
     }
 
